@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Local search app</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+    <script
+        src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet'
+        href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css'
+        type='text/css' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 50px;
+            bottom: 0;
+            width: 100%;
+        }
+        .box{
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h3>Just a box</h3>
+    </div>
+    <div id='map'></div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZmFydXFob3NzZW4zMCIsImEiOiJja284cWs1anUxeWU4Mm5scmxwYXo2bTg3In0.2HIV2uP72bXWQCstp6-LDw';
+        var map = new mapboxgl.Map({
+            container: 'map', // Container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // Map style to use
+            center: [-122.25948, 37.87221], // Starting position [lng, lat]
+            zoom: 12, // Starting zoom level
+        });
+
+
+        var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+            accessToken: mapboxgl.accessToken, // Set the access token
+            mapboxgl: mapboxgl, // Set the mapbox-gl instance
+            marker: false, // Do not use the default marker style
+            placeholder: 'Search for places in Berkeley',
+
+        });
+
+        // Add the geocoder to the map
+        map.addControl(geocoder);
+    </script>
+</body>
+
+</html>
